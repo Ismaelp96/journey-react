@@ -4,11 +4,9 @@ import {
   ArrowRight,
   UserRoundPlus,
   Settings2,
-  PlusIcon,
-  XIcon,
-  AtSign,
 } from 'lucide-react';
 import { useState } from 'react';
+import { SelectInvities } from './components/select-invites';
 
 export function App() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
@@ -18,16 +16,16 @@ export function App() {
     setIsGuestsInputOpen(true);
   }
 
+  function closeGuestModal() {
+    setIsGuestsModalOpen(false);
+  }
+
   function clonseGuestsInput() {
     setIsGuestsInputOpen(false);
   }
 
   function openGuestsModal() {
     setIsGuestsModalOpen(true);
-  }
-
-  function closeGuestsModal() {
-    setIsGuestsModalOpen(false);
   }
 
   return (
@@ -119,79 +117,8 @@ export function App() {
           </p>
         </div>
       </div>
-      {isGuestsModalOpen && (
-        <div className='fixed inset-0 bg-black/60 flex items-center justify-center'>
-          <div className='w-full max-w-[640px] shadow-shape rounded-xl bg-zinc-900 py-5 px-6 space-y-5'>
-            <div className='space-y-2'>
-              <div className='flex justify-between items-center w-full'>
-                <h2 className='text-lg font-semibold'>Selecionar convidados</h2>
-                <button type='button' onClick={closeGuestsModal}>
-                  <XIcon className='size-5 text-zinc-400 hover:text-zinc-500 transition-colors duration-200' />
-                </button>
-              </div>
-              <p className='text-sm text-zinc-400'>
-                Os convidados irão receber e-mails para confirmar a participação
-                na viagem
-              </p>
-            </div>
 
-            <div className='flex flex-wrap gap-2 w-full'>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-              <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>jessica.White44@yahoo.com</span>
-                <button type='button'>
-                  <XIcon className='size-4 text-zinc-400' />
-                </button>
-              </div>
-            </div>
-            <div className='w-full h-px bg-zinc-800' />
-
-            <form className='p-2.5 w-full flex items-center bg-zinc-950 rounded-lg border border-zinc-800'>
-              <div className='flex items-center gap-2 flex-1'>
-                <AtSign className='text-zinc-400 size-5' />
-                <input
-                  type='email'
-                  placeholder='Digite o e-mail do convidado'
-                  className='text-lg text-zinc-400 bg-transparent outline-none w-80'
-                />
-              </div>
-              <button className='bg-lime-300 text-lime-900 px-5 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-lime-400 transition-colors duration-200 ease-in'>
-                Convidar
-                <PlusIcon className='size-5' />
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      {isGuestsModalOpen && <SelectInvities onClose={closeGuestModal} />}
     </div>
   );
 }
