@@ -1,4 +1,4 @@
-import { AtSign, PlusIcon, Users, XIcon } from 'lucide-react';
+import { AtSign, PhoneCall, PlusIcon, Users, XIcon } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 
 export type SelectInvitiesProps = {
@@ -21,6 +21,7 @@ export function SelectInvities({ onClose }: SelectInvitiesProps) {
     );
     setGetEmailToInvite(newEmailList);
     setGetNumberToInvite(newNumberList);
+    onEmailChange(newEmailList.length);
   }
 
   function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
@@ -36,9 +37,10 @@ export function SelectInvities({ onClose }: SelectInvitiesProps) {
     if (getEmailToInvite.includes(email) || getNumberToInvite.includes(tel)) {
       return;
     }
-
-    setGetEmailToInvite([...getEmailToInvite, email]);
+    const newEmailList = [...getEmailToInvite, email];
+    setGetEmailToInvite(newEmailList);
     setGetNumberToInvite([...getNumberToInvite, tel]);
+    onEmailChange(newEmailList.length);
 
     event.currentTarget.reset();
   }
@@ -111,7 +113,7 @@ export function SelectInvities({ onClose }: SelectInvitiesProps) {
                 />
               </div>
               <div className='flex items-center gap-2 flex-1'>
-                <AtSign className='text-zinc-400 size-5' />
+                <PhoneCall className='text-zinc-400 size-5' />
                 <input
                   type='tel'
                   name='tel'
