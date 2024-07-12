@@ -3,7 +3,7 @@ import { SelectInvitiesModal } from './select-invites';
 import { CreateTripModal } from './create-travel';
 import { useNavigate } from 'react-router-dom';
 import { DestinationAndDateStep } from './steps/destination-and-date-step';
-import { ConfirmStripStep } from './steps/confirm-strip-step';
+import { ConfirmStripStep } from './steps/invite-guests-step';
 
 export function CreateTripPage() {
 	const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
@@ -88,6 +88,7 @@ export function CreateTripPage() {
 					/>
 					{isGuestsInputOpen && (
 						<ConfirmStripStep
+							getEmailToInvite={getEmailToInvite}
 							openConfirmTripModal={openConfirmTripModal}
 							openGuestsModal={openGuestsModal}
 						/>

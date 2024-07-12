@@ -3,11 +3,13 @@ import { ArrowRight, UserRoundPlus } from 'lucide-react';
 type ConfirmStripStepProps = {
 	openGuestsModal: () => void;
 	openConfirmTripModal: () => void;
+	getEmailToInvite: string[];
 };
 
 export function ConfirmStripStep({
 	openGuestsModal,
 	openConfirmTripModal,
+	getEmailToInvite,
 }: ConfirmStripStepProps) {
 	return (
 		<div className='px-4 h-16 bg-zinc-900 rounded-xl flex items-center shadow-shape gap-3'>
@@ -18,7 +20,15 @@ export function ConfirmStripStep({
 					className='flex items-center gap-2 text-zinc-400 hover:text-zinc-500 transition-colors'>
 					<UserRoundPlus className='size-5' />
 
-					<span className='text-lg'>Quem estará na viagem?</span>
+					{getEmailToInvite.length > 0 ? (
+						<span className='text-zinc-100 text-lg flex-1'>
+							{getEmailToInvite.length} pessoa(s) convidado(s)
+						</span>
+					) : (
+						<span className='text-zinc-400 text-lg flex-1'>
+							Quem estará na viagem?
+						</span>
+					)}
 				</button>
 			</div>
 			<button
